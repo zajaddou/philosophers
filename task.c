@@ -1,43 +1,32 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   task.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/23 16:26:31 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/23 16:38:17 by zajaddou         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include <pthread.h>
-#include <unistd.h>
 #include <stdio.h>
-int bj = 0;
-pthread_mutex_t locky    =  PTHREAD_MUTEX_INITIALIZER;
+#include <unistd.h>
 
-void *task(void *arg)
+int i = 0;
+
+void *task2(void *arg)
 {
-    (void)arg;
-    // int i = 0;
-    // while(i < 100000)
-    // { i++;
-    //     pthread_mutex_lock(&locky);
-    //     bj++;
-    //     pthread_mutex_unlock(&locky);
-    // }
-    printf("hello\n");
+    sleep(1);
+    printf("2\n");
     return (NULL);
 }
+
+void *task1(void *arg)
+{
+    pthread_t tid;
+    pthread_create(&tid, NULL, task2, NULL);
+    pthread_join(tid, NULL);
+    sleep(1);
+    printf("1\n");
+    return (NULL);
+}
+
 int main()
 {
-    pthread_t t1;
-    pthread_t t2;
-
-    pthread_create(&t1,NULL, task,NULL);
-    // pthread_create(&t2,NULL, task,NULL);
-    pthread_detach(t1);
-    // sleep(1);
-    // printf("the value of j is :%d\n", bj);
+    pthread_t tid;
+    pthread_create(&tid, NULL, task1, NULL);
+    pthread_join(tid, NULL);
+    printf("0\n");
     return (0);
 }
