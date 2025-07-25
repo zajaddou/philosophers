@@ -1,21 +1,21 @@
 
 NAME= philo
 
-CC= cc -Wall -Wextra -Werror 
+CC= cc -Wall -Wextra -Werror
 
-# CFLAG= -fsanitize=address -g3
+CFLAG= -fsanitize=address -g3
 
-MDR = main.c
+MDR = main.c init.c
 
 OBJ_M= $(MDR:%.c=%.o)
 
 all: $(NAME) clean
 
 $(NAME): $(OBJ_M) 
-	@$(CC) $(CFLAG) main.c $(OBJ_M) -o $(NAME)
+	$(CC) $(CFLAG) $(OBJ_M) -o $(NAME)
 
 %.o: %.c philo.h
-	@$(CC) $(CFLAG) -c $< -o $@
+	$(CC) $(CFLAG) -c $< -o $@
 
 clean:
 	rm -rif $(OBJ_M)

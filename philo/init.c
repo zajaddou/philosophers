@@ -6,25 +6,30 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 11:31:45 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/23 12:10:56 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/25 21:31:49 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_philo    init_philo(t_input *input)
+void init_philo(t_input **input)
 {
     int i;
-    
-    t_philo *philo;
-    input->philo = malloc(sizeof(t_philo) * input->num_philo);
+    t_input *tmp;
+
+    tmp = *input;
+    tmp->philo = malloc(sizeof(t_philo) * tmp->num_philo);
     i = 0;
-    while (i < input->num_philo)
+    while (i < tmp->num_philo)
     {
-        input->philo[i].id = i + 1;
-        input->philo[i].eat_time = get_time();
-        input->philo[i].eat_num = 0;
-        pthread_mutex_init(&input->fork[i], NULL);
+        tmp->philo[i].id = i + 1;
+        tmp->philo[i].eat_time = get_time();
+        tmp->philo[i].eat_num = 0;
+        tmp->philo[i].input = tmp;
+        tmp->philo[i].l_fork = tmp->fork[i];
+        tmp->philo[i].r_fork = tmp->fork[(i + 1) % tmp->num_philo];
+        pthread_mutex_init(&tmp->fork[i], NULL);
         i++;
     }
+    pthread_mutex_init(&tmp->write, NULL);
 }
