@@ -6,11 +6,11 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 16:27:24 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 16:29:42 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/26 16:43:51 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../philo.h"
 
 pthread_mutex_t	*write_lock(void)
 {

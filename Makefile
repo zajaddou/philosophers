@@ -1,7 +1,7 @@
 NAME    = philo
 
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS  = -Wall -Wextra -Werror -fsanitize=thread -g3
 
 SRC     = philo.c \
           functions/parse.c \
@@ -17,7 +17,7 @@ OBJ     = $(SRC:.c=.o)
 all: $(NAME) clean
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.c philo.h
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -28,7 +28,7 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 
-re: fclean all
+re: all clean
 
 push: fclean
 	@git add .
@@ -36,4 +36,4 @@ push: fclean
 	@git push
 
 run: all
-	clear && ./philo
+	clear && ./philo 4 410 200 200 3

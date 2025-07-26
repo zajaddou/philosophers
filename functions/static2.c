@@ -6,11 +6,11 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:21:48 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 16:26:52 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/26 16:43:44 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../philo.h"
 
 time_t	start_time(time_t io)
 {

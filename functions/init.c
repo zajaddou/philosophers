@@ -6,11 +6,11 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:21:40 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 16:31:20 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/26 17:01:06 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../philo.h"
 
 t_philo	**philo_stack(int io)
 {
@@ -56,6 +56,7 @@ void	init_philo(void)
 	while (++i < num_philo(GET))
 	{
 		pthread_mutex_init(&fork[i], NULL);
+		pthread_mutex_init(&philo[i].safe_philo, NULL);
 		philo[i].id = i + 1;
 		philo[i].last_eat = get_time();
 		philo[i].eat_num = 0;

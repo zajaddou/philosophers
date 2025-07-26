@@ -6,11 +6,11 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:09:16 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 16:34:29 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/26 16:42:56 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../philo.h"
 
 int	check_args(char **av)
 {
@@ -45,7 +45,7 @@ int	check_limit(void)
 
 int	parse(int ac, char *av[])
 {
-	if (!(ac == 5 || ac == 6))
+	if (ac != 5 && ac != 6)
 		return (printf("invalid argument\n"), 1);
 	if (check_args(av))
 		return (printf("invalid argument\n"), 1);
