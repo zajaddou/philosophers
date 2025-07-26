@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:48:42 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 17:44:30 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/26 19:03:11 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	ft_sleep(time_t time)
 {
-	time_t	now;
+	time_t	start;
 
-	now = get_time();
-	while ((get_time() - now) < time)
-		usleep(time / 10);
+	start = get_time();
+	while ((get_time() - start) < time)
+		usleep(50);
 }
 
 void	*philo_life(void *arg)
@@ -27,7 +27,7 @@ void	*philo_life(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
-		usleep(50);
+		usleep(100);
 	while (1)
 	{
 		pthread_mutex_lock(philo->l_fork);
@@ -35,10 +35,12 @@ void	*philo_life(void *arg)
 		pthread_mutex_lock(philo->r_fork);
 		print_status(philo, "has taken a fork");
 		print_status(philo, "is eating");
+		
 		pthread_mutex_lock(&philo->safe_philo);
 		philo->last_eat = get_time();
 		philo->eat_num++;
 		pthread_mutex_unlock(&philo->safe_philo);
+		
 		ft_sleep(time_eat(GET));
 		pthread_mutex_unlock(philo->r_fork);
 		pthread_mutex_unlock(philo->l_fork);

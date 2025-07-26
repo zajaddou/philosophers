@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:21:36 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 18:31:02 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/26 18:54:08 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,12 @@ void	clean_up(t_philo *philo)
 
 void	get_start(void)
 {
-	pthread_t	*threads;
+	pthread_t	threads[200];
 	pthread_t	monitor_th;
 	t_philo		*philo;
 	int			i;
 
 	philo = *philo_stack(GET);
-	threads = malloc(sizeof(pthread_t) * num_philo(GET));
-	if (!threads)
-		return ;
 	i = 0;
 	while (i < num_philo(GET))
 	{
@@ -56,7 +53,6 @@ void	get_start(void)
 	i = -1;
 	while (++i < num_philo(GET))
 		pthread_detach(threads[i]);
-	free(threads);
 	clean_up(philo);
 }
 
