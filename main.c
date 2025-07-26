@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:21:36 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 15:50:54 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/26 16:22:18 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,6 @@ time_t	get_time(void)
 
 	gettimeofday(&now, NULL);
 	return ((now.tv_sec * 1000 + now.tv_usec / 1000));
-}
-
-void	print_status(t_philo *philo, char *msg)
-{
-	pthread_mutex_lock(write_lock());
-	printf("%ld\t%d\t%s\n", get_time() - start_time(GET), philo->id, msg);
-	if (!strcmp(msg, "is died"))
-		return ;
-	pthread_mutex_unlock(write_lock());
-}
-
-void	ft_sleep(time_t time)
-{
-	time_t	now;
-
-	now = get_time();
-	while ((get_time() - now) < time)
-		usleep(time / 10);
 }
 
 void	get_start(void)

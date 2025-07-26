@@ -6,11 +6,20 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:48:42 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 15:50:02 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/26 16:27:17 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	ft_sleep(time_t time)
+{
+	time_t	now;
+
+	now = get_time();
+	while ((get_time() - now) < time)
+		usleep(time / 10);
+}
 
 void	*philo_life(void *arg)
 {
@@ -27,6 +36,7 @@ void	*philo_life(void *arg)
 		print_status(philo, "has taken a fork");
 		print_status(philo, "is eating");
 		philo->last_eat = get_time();
+		philo->eat_num++;
 		ft_sleep(time_eat(GET));
 		pthread_mutex_unlock(philo->r_fork);
 		pthread_mutex_unlock(philo->l_fork);

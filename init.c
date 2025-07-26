@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:21:40 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 15:53:50 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/26 16:31:20 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ pthread_mutex_t	**forks_stack(int io)
 	return (NULL);
 }
 
-void	init(void)
+void	init_philo(void)
 {
 	t_philo			*philo;
 	pthread_mutex_t	*fork;
