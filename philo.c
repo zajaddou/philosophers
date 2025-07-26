@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:21:36 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 16:22:18 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/26 17:11:22 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,12 @@ void	get_start(void)
 	threads = malloc(sizeof(pthread_t) * num_philo(GET));
 	if (!threads)
 		return ;
-	i = -1;
-	while (++i < num_philo(GET))
+	i = 0;
+	while (i < num_philo(GET))
+	{
 		pthread_create(&threads[i], NULL, philo_life, &philo[i]);
+		i++;
+	}
 	pthread_create(&monitor_th, NULL, monitor, philo);
 	pthread_join(monitor_th, NULL);
 	i = -1;
