@@ -1,19 +1,68 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   globals.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/26 15:21:48 by zajaddou          #+#    #+#             */
+/*   Updated: 2025/07/26 15:21:51 by zajaddou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "philo.h"
 
-pthread_mutex_t *forks(pthread_mutex_t *new)
+int		num_philo(int io)
 {
-	static pthread_mutex_t *tk_save;
-	if (new)
-		tk_save = new;
-	return (tk_save);
+	static int save;
+	if (io != GET)
+		save = io;
+	return (save);
 }
 
-t_data *data(t_data *new)
+int		time_dead(int io)
 {
-	static t_data *db_save;
-	if (new)
-		db_save = new;
-	return (db_save);
+	static int save;
+	if (io != GET)
+		save = io;
+	return (save);
+}
+
+int		time_sleep(int io)
+{
+	static int save;
+	if (io != GET)
+		save = io;
+	return (save);
+}
+
+int		time_eat(int io)
+{
+	static int save;
+	if (io != GET)
+		save = io;
+	return (save);
+}
+
+int		must_eat(int io)
+{
+	static int save;
+	if (io != GET)
+		save = io;
+	return (save);
+}
+
+time_t    start_time(time_t io)
+{
+	static time_t save;
+	if (io != GET)
+		save = io;
+	return (save);
+}
+
+pthread_mutex_t *write_lock(void)
+{
+	static pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
+	return (&lock);
 }
 

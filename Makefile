@@ -5,7 +5,7 @@ CC= cc -Wall -Wextra -Werror
 
 CFLAG= -fsanitize=address -g3
 
-MDR = madata.c datait.c
+MDR = main.c parse.c init.c static.c
 
 OBJ_M= $(MDR:%.c=%.o)
 

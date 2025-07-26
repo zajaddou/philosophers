@@ -1,35 +1,68 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   datait.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/23 11:31:45 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 12:59:01 by zajaddou         ###   ########.fr       */
+/*   Created: 2025/07/26 15:21:40 by zajaddou          #+#    #+#             */
+/*   Updated: 2025/07/26 15:21:44 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void init_philo(t_data **data)
+t_philo **philo_stack(int io)
 {
-    int i;
-    t_data *tmp;
+    static t_philo *philo = NULL;
 
-    tmp = *data;
-    tmp->philo = malloc(sizeof(t_philo) * num_philo(GET));
-    i = 0;
-    while (i < num_philo(GET))
+    if (io == INIT && !philo)
     {
-        pthread_mutex_datait(&tmp->fork[i], NULL);
-        tmp->philo[i].id = i + 1;
-        tmp->philo[i].eat_time = get_time();
-        tmp->philo[i].eat_num = 0;
-        tmp->philo[i].data = tmp;
-        tmp->philo[i].l_fork = &tmp->fork[i];
-        tmp->philo[i].r_fork = &tmp->fork[(i + 1) % num_philo(GET)];
-        i++;
+        philo = malloc(sizeof(t_philo) * num_philo(GET));
+        if (!philo)
+            return (NULL);
     }
-    pthread_mutex_datait(&tmp->write, NULL);
+    if (philo)
+        return (&philo);
+    return (NULL);
+}
+
+pthread_mutex_t **forks_stack(int io)
+{
+    static pthread_mutex_t *fork = NULL;
+
+    if (io == INIT && !fork)
+    {
+        fork = malloc(sizeof(pthread_mutex_t) * num_philo(GET));
+        if (!fork)
+            return (NULL);
+    }
+    if (fork)
+        return (&fork);
+    return (NULL);
+}
+
+void init_philo(void)
+{
+    t_philo         *philo;
+    pthread_mutex_t *fork;
+    int             i;
+    
+    if (!philo || !fork)
+        return;
+
+    philo = *philo_stack(INIT);
+    fork = *forks_stack(INIT);
+
+    i = -1;
+    while (++i < num_philo(GET))
+    {
+        pthread_mutex_init(&fork[i], NULL);
+        philo[i].id = i + 1;
+        philo[i].last_eat = get_time();
+        philo[i].eat_num = 0;
+        philo[i].l_fork = &fork[i];
+        philo[i].r_fork = &fork[(i + 1) % num_philo(GET)];
+    }
+    pthread_mutex_init(write_lock(), NULL);
 }
