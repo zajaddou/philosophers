@@ -1,11 +1,11 @@
 
 NAME= philo
 
-CC= cc -Wall -Wextra -Werror
+CC= cc -Wall -Wextra -Werror 
 
 CFLAG= -fsanitize=address -g3
 
-MDR = main.c init.c
+MDR = madata.c datait.c
 
 OBJ_M= $(MDR:%.c=%.o)
 
