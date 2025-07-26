@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:21:36 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 18:18:47 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/26 18:31:02 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,14 @@ void	get_start(void)
 	clean_up(philo);
 }
 
-void f()
-{
-	system("leaks philo");
-}
+// void f()
+// {
+// 	system("leaks philo");
+// }
 
 int	main(int ac, char *av[])
 {
-	atexit(f);
+	//atexit(f);
 	if (parse(ac, av))
 		return (1);
 	init_philo();
