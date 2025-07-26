@@ -1,58 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   static.c                                           :+:      :+:    :+:   */
+/*   static2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:21:48 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 15:43:38 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/26 15:44:52 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	num_philo(int io)
+time_t	start_time(time_t io)
 {
-	static int	save;
+	static time_t	save;
 
 	if (io != GET)
 		save = io;
 	return (save);
 }
 
-int	time_dead(int io)
+pthread_mutex_t	*write_lock(void)
 {
-	static int	save;
+	static pthread_mutex_t	lock;
 
-	if (io != GET)
-		save = io;
-	return (save);
-}
-
-int	time_sleep(int io)
-{
-	static int	save;
-
-	if (io != GET)
-		save = io;
-	return (save);
-}
-
-int	time_eat(int io)
-{
-	static int	save;
-
-	if (io != GET)
-		save = io;
-	return (save);
-}
-
-int	must_eat(int io)
-{
-	static int	save;
-
-	if (io != GET)
-		save = io;
-	return (save);
+	pthread_mutex_init(&lock, NULL);
+	return (&lock);
 }

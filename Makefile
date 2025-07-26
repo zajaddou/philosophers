@@ -5,7 +5,7 @@ CC= cc -Wall -Wextra -Werror
 
 CFLAG= -fsanitize=address -g3
 
-MDR = main.c parse.c init.c static.c
+MDR = main.c parse.c init.c philo_life.c static.c static2.c
 
 OBJ_M= $(MDR:%.c=%.o)
 
