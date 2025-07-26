@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:21:40 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 15:21:44 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/26 15:34:26 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ void init_philo(void)
     pthread_mutex_t *fork;
     int             i;
     
-    if (!philo || !fork)
-        return;
-
     philo = *philo_stack(INIT);
     fork = *forks_stack(INIT);
+
+    if (!philo || !fork)
+        return;
 
     i = -1;
     while (++i < num_philo(GET))
