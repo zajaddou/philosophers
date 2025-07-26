@@ -1,37 +1,39 @@
+NAME    = philo
 
-NAME= philo
+CC      = cc
+CFLAGS  = -Wall -Wextra -Werror -fsanitize=address -g3
 
-CC= cc -Wall -Wextra -Werror 
+SRC     = philo.c \
+          functions/parse.c \
+          functions/init.c \
+          functions/monitor.c \
+          functions/print.c \
+          functions/philo_life.c \
+          functions/static.c \
+          functions/static2.c
 
-CFLAG= -fsanitize=address -g3
-
-MDR = main.c parse.c init.c monitor.c print.c philo_life.c static.c static2.c
-
-OBJ_M= $(MDR:%.c=%.o)
+OBJ     = $(SRC:.c=.o)
 
 all: $(NAME) clean
 
-$(NAME): $(OBJ_M) 
-	$(CC) $(CFLAG) $(OBJ_M) -o $(NAME)
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.c philo.h
-	$(CC) $(CFLAG) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rif $(OBJ_M)
-	clear
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -rif $(NAME)
-	clear
+	@rm -f $(NAME)
+
+re: fclean all
 
 push: fclean
 	@git add .
 	@git commit -m "update"
 	@git push
 
-run: philo clean
+run: all
 	clear && ./philo
-
-re: fclean all
-	clear
