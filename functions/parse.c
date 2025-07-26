@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:09:16 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 16:42:56 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/26 17:07:21 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_args(char **av)
 	return (0);
 }
 
-int	check_limit(void)
+int	check_limit(int ac)
 {
 	if (num_philo(GET) < 0 || num_philo(GET) > 200)
 		return (1);
@@ -38,8 +38,9 @@ int	check_limit(void)
 		return (1);
 	if (time_sleep(GET) < 60)
 		return (1);
-	if (must_eat(GET) <= 0)
-		return (1);
+	if (ac == 6)
+		if (must_eat(GET) <= 0)
+			return (1);
 	return (0);
 }
 
@@ -57,7 +58,7 @@ int	parse(int ac, char *av[])
 	must_eat (-1);
 	if (ac == 6)
 		must_eat (atoi(av[5]));
-	if (check_limit())
+	if (check_limit(ac))
 		return (printf("out of limit.\n"), 1);
 	return (0);
 }
