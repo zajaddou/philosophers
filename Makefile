@@ -1,7 +1,7 @@
 NAME    = philo
 
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror -fsanitize=thread -g3
+CFLAGS  = -Wall -Wextra -Werror 
 
 SRC     = philo.c \
           functions/parse.c \

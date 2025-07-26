@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:09:16 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 17:08:18 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/26 17:37:59 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_args(char **av)
 
 int	check_limit(int ac)
 {
-	if (num_philo(GET) < 0 || num_philo(GET) > 200)
+	if (num_philo(GET) <= 0 || num_philo(GET) > 200)
 		return (1);
 	if (time_dead(GET) < 0)
 		return (1);

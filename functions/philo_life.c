@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:48:42 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 17:02:59 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/26 17:44:30 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*philo_life(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
-		usleep(500);
+		usleep(50);
 	while (1)
 	{
 		pthread_mutex_lock(philo->l_fork);

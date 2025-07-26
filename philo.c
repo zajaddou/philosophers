@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:21:36 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 17:11:22 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/26 18:18:47 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,20 @@ time_t	get_time(void)
 
 	gettimeofday(&now, NULL);
 	return ((now.tv_sec * 1000 + now.tv_usec / 1000));
+}
+
+void	clean_up(t_philo *philo)
+{
+	int i;
+
+	i = 0;
+	while (i < num_philo(GET))
+	{
+		pthread_mutex_destroy(philo[i].l_fork);
+		pthread_mutex_destroy(philo[i].r_fork);
+		pthread_mutex_destroy(&philo[i].safe_philo);
+		i++;
+	}
 }
 
 void	get_start(void)
@@ -43,10 +57,17 @@ void	get_start(void)
 	while (++i < num_philo(GET))
 		pthread_detach(threads[i]);
 	free(threads);
+	clean_up(philo);
+}
+
+void f()
+{
+	system("leaks philo");
 }
 
 int	main(int ac, char *av[])
 {
+	atexit(f);
 	if (parse(ac, av))
 		return (1);
 	init_philo();

@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:51:02 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 17:02:35 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/26 18:05:32 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,5 @@ void	*monitor(void *arg)
 		}
 		if (must_eat(GET) > 0 && done == num_philo(GET))
 			return (NULL);
-		// pthread_mutex_lock(&philo->safe_philo);
-		// usleep(100);
 	}
 }
