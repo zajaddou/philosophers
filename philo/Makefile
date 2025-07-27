@@ -1,7 +1,7 @@
 NAME    = philo
 
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror #-fsanitize=thread
+CFLAGS  = -Wall -Wextra -Werror
 
 SRC     = main.c \
           functions/parse.c \
@@ -16,7 +16,7 @@ SRC     = main.c \
 
 OBJ     = $(SRC:.c=.o)
 
-all: $(NAME) clean
+all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
@@ -31,11 +31,3 @@ fclean: clean
 	@rm -f $(NAME)
 
 re: all clean
-
-push: fclean
-	@git add .
-	@git commit -m "update"
-	@git push
-
-run: all
-	clear && ./philo 5 650 200 200
