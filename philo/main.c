@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:21:36 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 18:05:07 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 19:37:31 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	start_threads(void)
 	{
 		err = pthread_create(&threads[i], NULL, philo_life, &philo[i]);
 		if (err != 0)
-			return (i);
+			return (1);
 	}
 	err = pthread_create(&monitor_th, NULL, monitor, philo);
 	if (err != 0)
@@ -47,30 +47,17 @@ int	start_threads(void)
 	return (0);
 }
 
-void	free_all(int stop)
-{
-	pthread_t	*pthreads;
-	int			i;
-
-	i = -1;
-	pthreads = pthreads_stack();
-	while (++i <= stop)
-		pthread_detach(pthreads[i]);
-}
-
 int	main(int ac, char *av[])
 {
-	int	status;
-
 	if (parse(ac, av))
 		return (1);
 	if (init_data())
 		return (1);
-	status = start_threads();
-	if (status)
+	if (start_threads())
 	{
 		write(2, "Error.\n", 7);
-		return (free_all(status), 1);
+		clean_all();
+		return (1);
 	}
 	clean_all();
 	return (0);
