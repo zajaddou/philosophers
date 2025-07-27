@@ -1,7 +1,7 @@
 NAME    = philo
 
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror -fsanitize=thread
+CFLAGS  = -Wall -Wextra -Werror
 
 SRC     = main.c \
 			lib/ft_atoi.c \
