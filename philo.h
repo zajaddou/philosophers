@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:39:25 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 03:07:45 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 03:50:45 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 #define GET -1337
 #define FREE -7331
 
-// #define malloc(X) NULL
 typedef struct s_philo
 {
 	int				id;
