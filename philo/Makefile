@@ -4,15 +4,15 @@ CC      = cc
 CFLAGS  = -Wall -Wextra -Werror
 
 SRC     = main.c \
-          functions/parse.c \
-          functions/init.c \
-          functions/monitor.c \
-          functions/print.c \
-          functions/philo_life.c \
-          functions/static.c \
-          functions/static_.c \
-		  functions/clean.c \
-		  functions/short.c
+			functions/parse.c \
+			functions/init.c \
+			functions/monitor.c \
+			functions/print.c \
+			functions/philo_life.c \
+			functions/static.c \
+			functions/static_.c \
+			functions/clean.c \
+			functions/short.c
 
 OBJ     = $(SRC:.c=.o)
 
