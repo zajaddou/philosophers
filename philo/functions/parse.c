@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:09:16 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 17:18:09 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 17:48:45 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,15 @@ int	check_limit(int ac)
 int	parse(int ac, char *av[])
 {
 	if (ac != 5 && ac != 6)
-		return (printf("invalid argument\n"), 1);
+	{
+		write(2, "invalid argument\n", 17);
+		return (1);
+	}
 	if (check_args(av))
-		return (printf("invalid argument\n"), 1);
+	{
+		write(2, "invalid argument\n", 17);
+		return (1);
+	}
 	num_philo(ft_atoi(av[1]));
 	time_dead(ft_atoi(av[2]));
 	time_eat(ft_atoi(av[3]));
@@ -59,6 +65,9 @@ int	parse(int ac, char *av[])
 	if (ac == 6)
 		must_eat (ft_atoi(av[5]));
 	if (check_limit(ac))
-		return (printf("out of limit.\n"), 1);
+	{
+		write(2, "out of limit.\n", 14);
+		return (1);
+	}
 	return (0);
 }
