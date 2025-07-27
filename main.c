@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:21:36 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 02:47:43 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 03:07:34 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int ac, char *av[])
 {
 	if (parse(ac, av))
 		return (1);
-	if (init_philo())
+	if (init_data())
 		return (1);
 	start_threads();
 	clean_all();

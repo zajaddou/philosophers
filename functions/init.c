@@ -6,13 +6,13 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:21:40 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 02:49:50 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 03:07:29 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int	init_philo(void)
+int	init_data(void)
 {
 	t_philo			*philo;
 	pthread_mutex_t	*forks;

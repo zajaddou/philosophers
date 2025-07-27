@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:39:25 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 02:54:00 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 03:07:45 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_philo
 }	t_philo;
 
 int				parse(int ac, char *av[]);
-int				init_philo(void);
+int				init_data(void);
 int				time_eat(int io);
 int				num_philo(int io);
 int				time_dead(int io);
