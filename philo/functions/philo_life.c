@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:48:42 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 17:11:16 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 17:24:49 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ void	*philo_life(void *arg)
 		lock(philo->r_fork);
 		print_status(philo, "has taken a fork");
 		print_status(philo, "is eating");
-		lock(&philo->safe_philo);
+		lock(&philo->safe_monitor);
 		philo->last_eat = get_time();
 		philo->eat_num++;
-		unlock(&philo->safe_philo);
+		unlock(&philo->safe_monitor);
 		run(time_eat(GET));
-		unlock(philo->r_fork);
 		unlock(philo->l_fork);
+		unlock(philo->r_fork);
 		print_status(philo, "is sleeping");
 		run(time_sleep(GET));
 		print_status(philo, "is thinking");

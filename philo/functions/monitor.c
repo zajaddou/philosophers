@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:51:02 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 17:18:22 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 17:23:55 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ void	*monitor(void *arg)
 		done = 0;
 		while (++i < num_philo(GET))
 		{
-			lock(&philo[i].safe_philo);
+			lock(&philo[i].safe_monitor);
 			if ((get_time() - philo[i].last_eat) > time_dead(GET))
 			{
 				print_status(&philo[i], "died");
-				unlock(&philo[i].safe_philo);
+				unlock(&philo[i].safe_monitor);
 				return (NULL);
 			}
 			if (must_eat(GET) > 0 && philo[i].eat_num >= must_eat(GET))
 				done++;
-			unlock(&philo[i].safe_philo);
+			unlock(&philo[i].safe_monitor);
 		}
 		if (must_eat(GET) > 0 && done == num_philo(GET))
 			return (NULL);

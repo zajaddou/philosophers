@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:39:25 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 15:28:48 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 17:23:55 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_philo
 	int				eat_num;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
-	pthread_mutex_t	safe_philo;
+	pthread_mutex_t	safe_monitor;
 }	t_philo;
 
 int				ft_atoi(const char *str);

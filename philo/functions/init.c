@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:21:40 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 16:13:01 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 17:23:55 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	init_data(void)
 	while (++i < num_philo(GET))
 	{
 		pthread_mutex_init(&forks[i], NULL);
-		pthread_mutex_init(&philo[i].safe_philo, NULL);
+		pthread_mutex_init(&philo[i].safe_monitor, NULL);
 		philo[i].id = i + 1;
 		philo[i].last_eat = get_time();
 		philo[i].eat_num = 0;
