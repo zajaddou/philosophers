@@ -6,13 +6,11 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 16:27:24 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 03:05:03 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 03:08:16 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
-
-
 
 void	print_status(t_philo *philo, char *msg)
 {
