@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:21:36 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 18:54:08 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 01:12:41 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ time_t	get_time(void)
 
 void	clean_up(t_philo *philo)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < num_philo(GET))
@@ -41,13 +41,10 @@ void	get_start(void)
 	t_philo		*philo;
 	int			i;
 
-	philo = *philo_stack(GET);
-	i = 0;
-	while (i < num_philo(GET))
-	{
+	philo = philo_stack();
+	i = -1;
+	while (++i < num_philo(GET))
 		pthread_create(&threads[i], NULL, philo_life, &philo[i]);
-		i++;
-	}
 	pthread_create(&monitor_th, NULL, monitor, philo);
 	pthread_join(monitor_th, NULL);
 	i = -1;
@@ -56,14 +53,8 @@ void	get_start(void)
 	clean_up(philo);
 }
 
-// void f()
-// {
-// 	system("leaks philo");
-// }
-
 int	main(int ac, char *av[])
 {
-	//atexit(f);
 	if (parse(ac, av))
 		return (1);
 	init_philo();

@@ -1,16 +1,15 @@
 NAME    = philo
 
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror 
+CFLAGS  = -Wall -Wextra -Werror #-fsanitize=thread
 
-SRC     = philo.c \
+SRC     = main.c \
           functions/parse.c \
           functions/init.c \
           functions/monitor.c \
           functions/print.c \
           functions/philo_life.c \
-          functions/static.c \
-          functions/static2.c
+          functions/static.c
 
 OBJ     = $(SRC:.c=.o)
 
@@ -36,4 +35,4 @@ push: fclean
 	@git push
 
 run: all
-	clear && ./philo 4 410 200 200 3
+	clear && ./philo 5 410 200 200 1

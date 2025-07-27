@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:39:25 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 18:13:47 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 01:11:43 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <string.h>
 
 #define GET -1337
-#define INIT -7331
+#define FREE -7331
 
 // #define malloc(X) NULL
 typedef struct s_philo
@@ -43,7 +43,7 @@ time_t			start_time(time_t io);
 time_t			get_time(void);
 
 pthread_mutex_t	*write_lock(void);
-t_philo			**philo_stack(int io);
+t_philo			*philo_stack(void);
 void			*philo_life(void *arg);
 void			*monitor(void *arg);
 void			print_status(t_philo *philo, char *msg);

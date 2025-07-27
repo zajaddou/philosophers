@@ -6,40 +6,31 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:21:40 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 18:51:51 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 01:11:53 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-t_philo	**philo_stack(int io)
+pthread_mutex_t	*write_lock(void)
 {
-	static t_philo	*philo;
+	static pthread_mutex_t	lock;
 
-	if (io == INIT)
-	{
-		philo = malloc(sizeof(t_philo) * num_philo(GET));
-		if (!philo)
-			return (NULL);
-	}
-	if (philo)
-		return (&philo);
-	return (NULL);
+	return (&lock);
 }
 
-pthread_mutex_t	**forks_stack(int io)
+t_philo	*philo_stack(void)
 {
-	static pthread_mutex_t	*fork;
+	static t_philo	array[200];
 
-	if (io == INIT)
-	{
-		fork = malloc(sizeof(pthread_mutex_t) * num_philo(GET));
-		if (!fork)
-			return (NULL);
-	}
-	if (fork)
-		return (&fork);
-	return (NULL);
+	return (array);
+}
+
+pthread_mutex_t	*forks_stack(void)
+{
+	static pthread_mutex_t	philo_forks[200];
+
+	return (philo_forks);
 }
 
 void	init_philo(void)
@@ -48,8 +39,8 @@ void	init_philo(void)
 	pthread_mutex_t	*fork;
 	int				i;
 
-	philo = *philo_stack(INIT);
-	fork = *forks_stack(INIT);
+	philo = philo_stack();
+	fork = forks_stack();
 	if (!philo || !fork)
 		return ;
 	i = -1;
