@@ -4,6 +4,7 @@ CC      = cc
 CFLAGS  = -Wall -Wextra -Werror
 
 SRC     = main.c \
+			lib/ft_atoi.c \
 			functions/parse.c \
 			functions/init.c \
 			functions/monitor.c \
@@ -29,5 +30,10 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+
+push: fclean
+	@git add .
+	@git commit -m update
+	@git push
 
 re: all clean
