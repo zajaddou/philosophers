@@ -6,18 +6,17 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:39:25 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 15:20:56 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 15:27:49 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-# include <pthread.h>
-# include <stdlib.h>
 # include <stdio.h>
-# include <sys/time.h>
+# include <pthread.h>
 # include <unistd.h>
+# include <sys/time.h>
 
 # define GET -1
 
