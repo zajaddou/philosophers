@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:51:02 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 03:02:17 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 03:24:23 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	*monitor(void *arg)
 	philo = (t_philo *)arg;
 	while (1)
 	{
-		usleep(1000);
 		i = -1;
 		done = 0;
 		while (++i < num_philo(GET))

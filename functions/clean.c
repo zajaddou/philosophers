@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 02:47:53 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 02:48:48 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 03:24:45 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	clean_all(void)
 	int		i;
 
 	pthread_mutex_destroy(write_lock());
-
 	philo = philo_stack();
 	i = -1;
 	while (++i < num_philo(GET))
