@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:21:36 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 17:50:20 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 18:05:07 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,20 @@ time_t	get_time(void)
 
 int	start_threads(void)
 {
-	pthread_t	threads[200];
+	pthread_t	*threads;
 	pthread_t	monitor_th;
 	t_philo		*philo;
 	int			err;
 	int			i;
 
 	philo = philo_stack();
+	threads = pthreads_stack();
 	i = -1;
 	while (++i < num_philo(GET))
 	{
 		err = pthread_create(&threads[i], NULL, philo_life, &philo[i]);
 		if (err != 0)
-			return (1);
+			return (i);
 	}
 	err = pthread_create(&monitor_th, NULL, monitor, philo);
 	if (err != 0)
@@ -42,23 +43,34 @@ int	start_threads(void)
 	pthread_join(monitor_th, NULL);
 	i = -1;
 	while (++i < num_philo(GET))
-	{
-		err = pthread_detach(threads[i]);
-		if (err != 0)
-			return (1);
-	}
+		pthread_detach(threads[i]);
+	return (0);
+}
+
+void	free_all(int stop)
+{
+	pthread_t	*pthreads;
+	int			i;
+
+	i = -1;
+	pthreads = pthreads_stack();
+	while (++i <= stop)
+		pthread_detach(pthreads[i]);
 }
 
 int	main(int ac, char *av[])
 {
+	int	status;
+
 	if (parse(ac, av))
 		return (1);
 	if (init_data())
 		return (1);
-	if (start_threads())
+	status = start_threads();
+	if (status)
 	{
 		write(2, "Error.\n", 7);
-		return (1);
+		return (free_all(status), 1);
 	}
 	clean_all();
 	return (0);

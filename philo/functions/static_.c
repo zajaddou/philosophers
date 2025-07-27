@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 02:50:20 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 03:23:49 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 18:02:18 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,12 @@ pthread_mutex_t	*forks_stack(void)
 	static pthread_mutex_t	philo_forks[200];
 
 	return (philo_forks);
+}
+
+
+pthread_t	*pthreads_stack(void)
+{
+	static pthread_t	array[200];
+
+	return (array);
 }

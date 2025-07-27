@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:39:25 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 17:23:55 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 18:03:47 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ time_t			get_time(void);
 t_philo			*philo_stack(void);
 pthread_mutex_t	*write_lock(void);
 pthread_mutex_t	*forks_stack(void);
+pthread_t		*pthreads_stack(void);
 
 #endif
