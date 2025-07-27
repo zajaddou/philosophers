@@ -6,19 +6,20 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:39:25 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 15:05:14 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 15:20:56 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pthread.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <sys/time.h>
-#include <unistd.h>
-#include <string.h>
+#ifndef PHILO_H
+# define PHILO_H
 
-#define GET -1337
-#define FREE -7331
+# include <pthread.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <sys/time.h>
+# include <unistd.h>
+
+# define GET -1
 
 typedef struct s_philo
 {
@@ -31,6 +32,7 @@ typedef struct s_philo
 }	t_philo;
 
 int				ft_atoi(const char *str);
+int				ft_strcmp(const char *s1, const char *s2);
 int				parse(int ac, char *av[]);
 int				init_data(void);
 int				time_eat(int io);
@@ -49,3 +51,5 @@ time_t			get_time(void);
 t_philo			*philo_stack(void);
 pthread_mutex_t	*write_lock(void);
 pthread_mutex_t	*forks_stack(void);
+
+#endif

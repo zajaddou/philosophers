@@ -5,6 +5,7 @@ CFLAGS  = -Wall -Wextra -Werror
 
 SRC     = main.c \
 			lib/ft_atoi.c \
+			lib/ft_strcmp.c \
 			functions/parse.c \
 			functions/init.c \
 			functions/monitor.c \
