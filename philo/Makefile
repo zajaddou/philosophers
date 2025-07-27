@@ -1,7 +1,7 @@
 NAME    = philo
 
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS  = -Wall -Wextra -Werror -fsanitize=thread
 
 SRC     = main.c \
 			lib/ft_atoi.c \
@@ -32,9 +32,4 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 
-push: fclean
-	@git add .
-	@git commit -m update
-	@git push
-
-re: all clean
+re: all
