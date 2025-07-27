@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:21:40 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 01:11:53 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 01:17:15 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,23 @@ pthread_mutex_t	*forks_stack(void)
 void	init_philo(void)
 {
 	t_philo			*philo;
-	pthread_mutex_t	*fork;
+	pthread_mutex_t	*forks;
 	int				i;
 
 	philo = philo_stack();
-	fork = forks_stack();
-	if (!philo || !fork)
+	forks = forks_stack();
+	if (!philo || !forks)
 		return ;
 	i = -1;
 	while (++i < num_philo(GET))
 	{
-		pthread_mutex_init(&fork[i], NULL);
+		pthread_mutex_init(&forks[i], NULL);
 		pthread_mutex_init(&philo[i].safe_philo, NULL);
 		philo[i].id = i + 1;
 		philo[i].last_eat = get_time();
 		philo[i].eat_num = 0;
-		philo[i].l_fork = &fork[i];
-		philo[i].r_fork = &fork[(i + 1) % num_philo(GET)];
+		philo[i].l_fork = &forks[i];
+		philo[i].r_fork = &forks[(i + 1) % num_philo(GET)];
 	}
 	pthread_mutex_init(write_lock(), NULL);
 }
