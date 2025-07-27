@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:51:02 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 18:05:32 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 03:02:17 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,21 @@ void	*monitor(void *arg)
 	philo = (t_philo *)arg;
 	while (1)
 	{
+		usleep(1000);
 		i = -1;
 		done = 0;
 		while (++i < num_philo(GET))
 		{
-			pthread_mutex_lock(&philo[i].safe_philo);
+			lock(&philo[i].safe_philo);
 			if ((get_time() - philo[i].last_eat) >= time_dead(GET))
 			{
 				print_status(&philo[i], "is died");
-				pthread_mutex_unlock(&philo[i].safe_philo);
+				unlock(&philo[i].safe_philo);
 				return (NULL);
 			}
 			if (must_eat(GET) > 0 && philo[i].eat_num >= must_eat(GET))
 				done++;
-			pthread_mutex_unlock(&philo[i].safe_philo);
+			unlock(&philo[i].safe_philo);
 		}
 		if (must_eat(GET) > 0 && done == num_philo(GET))
 			return (NULL);

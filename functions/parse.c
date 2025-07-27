@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:09:16 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 17:37:59 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 01:51:04 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ int	parse(int ac, char *av[])
 		return (printf("invalid argument\n"), 1);
 	if (check_args(av))
 		return (printf("invalid argument\n"), 1);
-	num_philo (atoi(av[1]));
-	time_dead (atoi(av[2]));
-	time_eat (atoi(av[3]));
-	time_sleep (atoi(av[4]));
-	start_time (get_time());
+	num_philo(atoi(av[1]));
+	time_dead(atoi(av[2]));
+	time_eat(atoi(av[3]));
+	time_sleep(atoi(av[4]));
+	start_time(get_time());
 	must_eat (-1);
 	if (ac == 6)
 		must_eat (atoi(av[5]));

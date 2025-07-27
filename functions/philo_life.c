@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:48:42 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/26 22:49:38 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 02:51:27 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,21 @@ void	*philo_life(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
-		usleep(50);
+		usleep(200);
 	while (1)
 	{
-		pthread_mutex_lock(philo->l_fork);
+		lock(philo->l_fork);
 		print_status(philo, "has taken a fork");
-		pthread_mutex_lock(philo->r_fork);
+		lock(philo->r_fork);
 		print_status(philo, "has taken a fork");
 		print_status(philo, "is eating");
-		pthread_mutex_lock(&philo->safe_philo);
+		lock(&philo->safe_philo);
 		philo->last_eat = get_time();
 		philo->eat_num++;
-		pthread_mutex_unlock(&philo->safe_philo);
+		unlock(&philo->safe_philo);
 		run(time_eat(GET));
-		pthread_mutex_unlock(philo->r_fork);
-		pthread_mutex_unlock(philo->l_fork);
+		unlock(philo->r_fork);
+		unlock(philo->l_fork);
 		print_status(philo, "is sleeping");
 		run(time_sleep(GET));
 		print_status(philo, "is thinking");

@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:39:25 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 01:11:43 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 02:54:00 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,20 @@ typedef struct s_philo
 }	t_philo;
 
 int				parse(int ac, char *av[]);
-void			init_philo(void);
-
+int				init_philo(void);
 int				time_eat(int io);
 int				num_philo(int io);
 int				time_dead(int io);
 int				time_sleep(int io);
 int				must_eat(int io);
-time_t			start_time(time_t io);
-time_t			get_time(void);
-
-pthread_mutex_t	*write_lock(void);
-t_philo			*philo_stack(void);
+int				lock(pthread_mutex_t *ptr);
+int				unlock(pthread_mutex_t *ptr);
 void			*philo_life(void *arg);
 void			*monitor(void *arg);
+void			clean_all(void);
 void			print_status(t_philo *philo, char *msg);
+time_t			start_time(time_t io);
+time_t			get_time(void);
+t_philo			*philo_stack(void);
+pthread_mutex_t	*write_lock(void);
+pthread_mutex_t	*forks_stack(void);

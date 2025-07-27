@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   short.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/26 16:27:24 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 03:05:03 by zajaddou         ###   ########.fr       */
+/*   Created: 2025/07/27 02:51:33 by zajaddou          #+#    #+#             */
+/*   Updated: 2025/07/27 02:53:44 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-
-
-void	print_status(t_philo *philo, char *msg)
+int lock(pthread_mutex_t *ptr)
 {
-	long	time;
+	return (pthread_mutex_lock(ptr));
+}
 
-	time = get_time() - start_time(GET);
-	lock(write_lock());
-	printf("%ld\t%d\t%s\n", time, philo->id, msg);
-	if (!strcmp(msg, "is died"))
-		return ;
-	unlock(write_lock());
+int unlock(pthread_mutex_t *ptr)
+{
+	return (pthread_mutex_unlock(ptr));
 }

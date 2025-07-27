@@ -9,7 +9,10 @@ SRC     = main.c \
           functions/monitor.c \
           functions/print.c \
           functions/philo_life.c \
-          functions/static.c
+          functions/static.c \
+          functions/static_.c \
+		  functions/clean.c \
+		  functions/short.c
 
 OBJ     = $(SRC:.c=.o)
 
@@ -35,4 +38,4 @@ push: fclean
 	@git push
 
 run: all
-	clear && ./philo 5 410 200 200 1
+	clear && ./philo 5 650 200 200

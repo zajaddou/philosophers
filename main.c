@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:21:36 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 01:12:41 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 02:47:43 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,7 @@ time_t	get_time(void)
 	return ((now.tv_sec * 1000 + now.tv_usec / 1000));
 }
 
-void	clean_up(t_philo *philo)
-{
-	int	i;
-
-	i = 0;
-	while (i < num_philo(GET))
-	{
-		pthread_mutex_destroy(philo[i].l_fork);
-		pthread_mutex_destroy(philo[i].r_fork);
-		pthread_mutex_destroy(&philo[i].safe_philo);
-		i++;
-	}
-}
-
-void	get_start(void)
+void	start_threads(void)
 {
 	pthread_t	threads[200];
 	pthread_t	monitor_th;
@@ -50,14 +36,15 @@ void	get_start(void)
 	i = -1;
 	while (++i < num_philo(GET))
 		pthread_detach(threads[i]);
-	clean_up(philo);
 }
 
 int	main(int ac, char *av[])
 {
 	if (parse(ac, av))
 		return (1);
-	init_philo();
-	get_start();
+	if (init_philo())
+		return (1);
+	start_threads();
+	clean_all();
 	return (0);
 }

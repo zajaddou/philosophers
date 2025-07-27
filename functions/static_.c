@@ -1,27 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   static_ptr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/26 16:27:24 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 03:05:03 by zajaddou         ###   ########.fr       */
+/*   Created: 2025/07/27 02:50:20 by zajaddou          #+#    #+#             */
+/*   Updated: 2025/07/27 03:05:36 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-
-
-void	print_status(t_philo *philo, char *msg)
+int	must_eat(int io)
 {
-	long	time;
+	static int	save;
 
-	time = get_time() - start_time(GET);
-	lock(write_lock());
-	printf("%ld\t%d\t%s\n", time, philo->id, msg);
-	if (!strcmp(msg, "is died"))
-		return ;
-	unlock(write_lock());
+	if (io != GET)
+		save = io;
+	return (save);
 }
+
+pthread_mutex_t	*write_lock(void)
+{
+	static pthread_mutex_t	lock;
+
+	return (&lock);
+}
+
+t_philo	*philo_stack(void)
+{
+	static t_philo	array[200];
+
+	return (array);
+}
+
+pthread_mutex_t	*forks_stack(void)
+{
+	static pthread_mutex_t	philo_forks[200];
+
+	return (philo_forks);
+}
+

@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/26 16:27:24 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 03:05:03 by zajaddou         ###   ########.fr       */
+/*   Created: 2025/07/27 02:47:53 by zajaddou          #+#    #+#             */
+/*   Updated: 2025/07/27 02:48:48 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-
-
-void	print_status(t_philo *philo, char *msg)
+void	clean_all(void)
 {
-	long	time;
+	t_philo	*philo;
+	int		i;
 
-	time = get_time() - start_time(GET);
-	lock(write_lock());
-	printf("%ld\t%d\t%s\n", time, philo->id, msg);
-	if (!strcmp(msg, "is died"))
-		return ;
-	unlock(write_lock());
+	pthread_mutex_destroy(write_lock());
+
+	philo = philo_stack();
+	i = -1;
+	while (++i < num_philo(GET))
+	{
+		pthread_mutex_destroy(philo[i].l_fork);
+		pthread_mutex_destroy(philo[i].r_fork);
+		pthread_mutex_destroy(&philo[i].safe_philo);
+	}
 }
