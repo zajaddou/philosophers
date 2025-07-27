@@ -6,7 +6,7 @@
 /*   By: zajaddou <zajaddou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 15:21:40 by zajaddou          #+#    #+#             */
-/*   Updated: 2025/07/27 01:17:15 by zajaddou         ###   ########.fr       */
+/*   Updated: 2025/07/27 01:18:57 by zajaddou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ pthread_mutex_t	*write_lock(void)
 {
 	static pthread_mutex_t	lock;
 
-	return (&lock);
+	return (lock);
 }
 
 t_philo	*philo_stack(void)
